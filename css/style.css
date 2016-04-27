@@ -1,0 +1,304 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,200);
+body{
+width:1340px;
+margin-left:auto;
+margin-right:auto;
+background-color: #333232;
+color: white;
+font-family: Raleway, sans-serif;
+    font-size: 1.1em;
+    color: #545B64;
+    font-weight: 300;
+}
+
+.top{
+	
+	margin-bottom: 0px;
+	height:80px;
+	width:1200px;
+	
+}
+
+.container{
+	
+	margin: 20px 20px 20px 0px;
+	
+}
+
+.logo{
+	
+	margin-left: 52px;
+	float:left;
+	display: inline-block;
+}
+.logo .logo_img{
+	width:100px;
+
+}
+.top-buttons{
+	
+	margin-left: 100px;
+	float: left;
+	
+}
+
+.btn{
+	font-size: 15px;
+	padding:10px;
+	border: 0px;
+	border-radius:5px;
+	background-color: #333232;
+	width: 120px;
+	display: inline-block;
+	margin-left:50px;	
+	text-align:right;
+	color: white;
+	box-shadow: 0px 0px 10px 1px black;
+	font-family: Raleway, sans-serif;
+	cursor: pointer
+}
+
+.btn-add
+{
+width:150px;
+background-image: url(img/logos/add.png);
+background-size:20px 20px;
+background-repeat: no-repeat;
+background-position: 10%;
+}
+
+.btn-examine{
+
+	
+background-image: url(img/logos/examine.png);
+background-size:20px 40px;
+background-repeat: no-repeat;
+background-position: 10%;
+}
+.btn-appointment{
+	width:200px;
+background-image: url(img/logos/testcal.png);
+background-size:25px 25px;
+background-repeat: no-repeat;
+background-position: 4%;
+}
+.body{
+max-width: 300px;
+min-width: 200px;
+height:800px;
+margin-right:50px;
+}
+
+.side{
+max-width: 300px;
+min-width: 200px;
+
+}
+
+.side .container{
+
+float: left;
+
+height:500px;
+
+}
+
+.search{
+margin-left:20px;
+margin-bottom: 20px;
+
+}
+
+.search-text{
+
+	width:220px;
+	padding:15px;
+	border: 2px;
+	box-shadow: 0px 0px 10px 1px black;
+	background-color: #333232;
+	border-radius:20px;
+	background-image: url("img/logos/search_icon.png");
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+	color:white;
+	
+}
+
+.list{
+	width: 220px;
+	height: 350px;
+	margin-left: 20px;
+	background-color: #333232;
+	border-radius: 1px;
+	box-shadow: 0px 0px 10px 1px black;
+	
+}
+.list li{
+	text-transform: uppercase;
+	    font-size: 15px;
+	list-style-type:none;
+	padding: 20px 10px 20px 10px ;
+	
+	transition:all .1s ease-in;
+	
+	margin-left:20px;
+	cursor: pointer;
+	margin:0px;
+	    color: white;
+}
+li span{
+	
+}
+li .p_name{
+	float:left;
+	text-align:left;
+    max-width: 146px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+li .p_id{
+	float:right;
+	text-align:right
+}
+footer {
+
+}
+
+.btn-dump{
+margin-top: 80px;
+width: 120px;
+height: 80px;
+background-image: url('img/logos/dumpfile.png');
+background-repeat: no-repeat;
+background-position: 50% 10%;
+background-size: 20px 20px;
+
+}
+
+.main{
+
+margin: 0px;
+border-radius: 3px;
+height: 750px;
+min-width: 600px;
+max-width: 100%;
+
+
+}
+footer{
+	margin-top:75%;
+	height:50px;
+	background-color: #131416;
+	text-align:center;
+}
+
+footer .footer-bottom{
+text-align: center;
+	color: #ccc;
+
+	font-size: 0.9em;
+	margin: 0;
+	padding: 0;
+}
+
+footer p{
+	margin:20px;
+}
+footer p a{
+	color: #ccc;
+	font-weight: bold;
+}
+
+footer .footer-bottom p {
+	text-align: center;
+}
+
+footer .footer-bottom p, footer .footer-bottom p a {
+	color: #42454C;
+	border-bottom-color: #42454C;
+}
+
+.main .container{
+
+	
+}
+
+.main-top{
+margin: 20px 20px 0px 20px;
+}
+
+.main-img{
+	
+margin-left: 50px;	
+margin-top: 20px;
+
+}
+#patient_info{
+	
+	padding: 10px;
+	position:absolute;
+	z-index:10;
+	margin-top:10px;
+	opacity: .5;
+right: 5;	
+}
+#patient_info .name{
+	background-color: #323232;
+	padding:10px;
+	width: 100px;
+	display:block;
+	text-align:center;
+	border-radius: 20px;
+	
+}
+.img-slider{
+}
+
+.arrows{
+	
+}
+
+.row{
+	
+	
+	min-width: 600px;
+	margin:0px;
+	border: 0px;
+	padding: 0px;
+}
+
+
+.btn-report{
+
+background-image: url(img/logos/report3.png);
+background-size: 20px 20px;
+background-repeat: no-repeat;
+background-position: 10%;
+
+}
+
+.report{
+
+}
+
+::-webkit-input-placeholder {
+    color:    white;
+}
+
+input:-moz-placeholder { 
+   color:    white;
+   opacity:  1;
+}
+
+input::-moz-placeholder { 
+   color:    white;
+   opacity:  1;
+}
+
+:-ms-input-placeholder { 
+   color:    white;
+}
+
+:placeholder-shown { 
+  color:    white;
+}

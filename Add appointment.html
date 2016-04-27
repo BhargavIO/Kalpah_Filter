@@ -1,0 +1,78 @@
+<html>
+<head>
+	
+	<meta charset="UTF-8">
+	<meta name=viewport>
+	<title>Login</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<style type="text/css">
+		::-webkit-input-placeholder {
+    color:    grey;
+}
+a{
+	text-decoration:none;
+	color: black;
+}
+	</style>
+<script src="js/jquery-2.2.0.min.js"></script>
+
+
+<script>
+
+$(document).ready(function(){
+
+    $(".close").click(function(){
+        $(".main").slideUp(700);
+    });
+    $(".list").click(function(){
+		$(".main").slideDown(700);
+	});
+
+});
+
+  
+});
+
+</script>
+
+</head> 
+
+<body>
+	<!--top-->
+	<div class="login-main" style="width: 100%;  height: 93%;" >
+	
+		<div  style="  margin-top: 50px; ">
+			
+			<img src="img/logo.png" width="180px" height="100px;" style="margin: auto;"/>
+			
+			
+		</div>	
+		
+		<div style="width: 500px; height: 400px;  margin: auto; margin-top: 50px; border-radius: 10px; box-shadow: 0px 0px 30px  black; overflow: visible;">
+			<div style="margin:10%;">
+				<h2 style="margin-left: 40%; float: left;">LOGIN</h2><img src="img/close.png" class="close"  width="25px" height="25px" style="cursor: pointer; margin-top: 20px;float:right;">
+			</div>
+		<div style=" margin: 0px 30px 30px 30px; width:90%; height: 90%; "  >
+			<form src="" method="post">
+					
+				
+				<input type="text" placeholder="Username" style="padding-left: 100px; text-indent: 40px; background-image:url(img/logoicon.png); background-position:3% 50%;background-repeat: no-repeat;background-size:7% 40%; border-radius: 20px; margin-left: 40px; width: 80%; height: 15%;padding: 20px; border: 1px solid #333232; color: grey; font-size:18px; box-shadow:  0px 0px 20px black inset; margin-top: 20px; background-color:#333232; "/>
+				<input type="text" placeholder="Password" style="background-image:url(img/pwdicon.png); text-indent: 40px; background-position: 3% 50%;background-repeat: no-repeat;background-size:7% 40%;border-radius: 20px; margin-left: 40px; width: 80%; height: 15%; padding: 20px; background-color:#333232; color: grey; font-size: 18px;border: 1px solid #333232; margin-top: 30px; box-shadow: 0px 0px 20px black inset; "/>
+			
+				<input type="submit" value="LOGIN" style="background-color: #F9F989; border-radius: 20px;width: 20%; height: 10%; padding: 10px;font-weight: bold; border: 1px solid #333232; cursor: pointer; vertical-align: middle; margin-top:30px; margin-left: 35%;"/>
+				
+			</form>
+			
+				<div style="border-top: 1px solid black; vertical-align: middle; margin: 20px 70px 0px 50px; ">
+				<button value="" style="float: left; cursor:pointer; background-color: #F9F989; border-radius: 20px; width: 22%; height: 10%; padding: 10px; border: 1px solid #333232;  font-weight: bold; margin-top:30px;"/><a href="signup.html ">SIGNUP</a></button>
+				<span style="float: right; color:#F9F989; margin-top: 40px;font-weight: bold; "><a href="signup.html" style="color:#F9F989;"> > Forgot password?</a></span>
+            </div>
+				
+			</div>
+		</div>
+	
+	
+	
+</body>
+	
+<html>

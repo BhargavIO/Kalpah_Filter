@@ -1,0 +1,88 @@
+<html>
+<head>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+<script src="js/jquery-2.2.0.min.js"></script>
+
+<script src="js/jquery.cycle2.min.js"></script>
+<script>
+
+$(document).ready(function(){
+
+    $(".close").click(function(){
+        $(".main").slideUp(700);
+    });
+    $(".list").click(function(){
+		$(".main").slideDown(700);
+	});
+	
+	 $("#d_close").click(function(){
+	 var overlay = document.getElementById('overlay');
+	var specialBox = document.getElementById('specialBox');
+        $("#specialBox").slideUp(700);
+		overlay.style.display = "none";
+		specialBox.style.display = "none";
+    });
+    
+$('.cycle-slideshow').cycle('pause');
+  
+});
+
+</script>
+    </head>
+    <body>
+<h2 id="cycle-caption"></h2>
+ 
+<div id="slideshow-1" class="row">
+ <div id="cycle-1" class="cycle-slideshow auto"
+    data-cycle-slides="> div.slide-container"
+    data-cycle-timeout="0"
+    data-cycle-caption="#cycle-caption"
+    data-cycle-swipe="true"
+    data-cycle-caption-template="{{alt}}">
+ <div class="slide-container first" data-loaded="true" data-src="/image1.jpg" data-alt="Caption 1">
+ <img src="img/1.jpg" alt="Caption 1">
+ </div>
+ <div class="slide-container" data-loaded="false" data-src="img/2.jpg" data-alt="Caption 2"></div>
+ <div class="slide-container" data-loaded="false" data-src="img/3.jpg" data-alt="Caption 3"></div>
+ <div class="slide-container" data-loaded="false" data-src="img/4.jpg" data-alt="Caption 4"></div>
+ <a href="#" class="cycle-prev"><span>&laquo; prev</span></a>
+ <a href="#" class="cycle-next"><span>next &raquo;</span></a>
+ 
+<div class="ajax-loader"></div>
+ </div>
+</div>
+<div id="slideshow-2" class="row">
+    <a href="#" class="cycle-next"><span>next &raquo;</span></a>
+ <div class="col-xs-1"><a href="#" class="cycle-prev"><span>&laquo; prev</span></a>
+ 
+</div>
+ <div class="col-xs-10">
+ <div id="cycle-2" class="cycle-slideshow"
+    data-cycle-slides="> div"
+    data-cycle-fx="carousel"
+    data-cycle-timeout="0"
+    data-cycle-carousel-visible="3"
+    data-cycle-carousel-fluid="true"
+    data-cycle-prev="#slideshow-2 .cycle-prev"
+    data-cycle-swipe="true"
+    data-cycle-next="#slideshow-2 .cycle-next">
+ <div class="cycle-slide"><a href="image1.jpg"><img src="img/1.jpg"/></a>
+</div>
+ <div class="cycle-slide"><a href="image2.jpg"><img src="img/2.jpg"/></a>
+</div>
+ <div class="cycle-slide"><a href="image3.jpg"><img src="img/3.jpg"/></a>
+</div>
+ <div class="cycle-slide"><a href="image4.jpg"><img src="img/4.jpg"/></a>
+</div>
+ </div>
+ <div class="slide-scroller">
+ <div class="slide-scroller-tracker"></div>
+ </div>
+ </div>
+</div>
+        </body>
+</html>

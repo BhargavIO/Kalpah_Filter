@@ -1,0 +1,133 @@
+<html>
+<head>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Report</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<style type="text/css">
+	
+::-webkit-input-placeholder {
+    color:    grey;
+}
+
+a{
+	text-decoration:none;
+	color: black;
+}
+
+.radio-sel{
+	height: 60px;
+	width: 100%;
+	background-color:rgba(74, 74, 74, 0.9);
+	margin-top: 40px;
+	box-shadow: 0px 0px 15px 0px black;
+ }
+ 
+ .radio-sel1{
+ 
+	height: 50px;
+	width: 100%;
+		
+ }
+ #reports{
+ 
+	width: 100%;
+	overflow: hidden;
+	margin-top: 20px;
+	
+ }
+ 
+ label{
+	font-size: 30px;
+	margin-left: 100px;
+ }
+</style>
+	
+<script src="js/jquery-2.2.0.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+    $(".close").click(function(){
+        $(".main").slideUp(700);
+    });
+    $(".list").click(function(){
+		$(".main").slideDown(700);
+	});
+
+var fileextension = ".jpg"; 
+var i = "1";
+
+
+$(function imageloop(){
+
+ $("<img id='mainImg' width=300px height=200px style='float: left; margin: 50px; border:2px solid black; border-radius: 5px;' />").attr('src', 'img/'+i + fileextension ).appendTo("#reports");
+ 
+ if (i==6 ){
+  $("<button class='btn-report btn report'  style='float: right; margin:0px 10px 0px 0px;' onclick='PrintImage('1.jpg')'>PRINT</button>").appendTo('#reports');
+ }
+ 
+ else{
+ i++;
+ imageloop();
+ };
+ 
+       });   
+	  
+function ImagetoPrint(source) {
+    return "<html><head><script>function step1(){\n" +
+            "setTimeout('step2()', 10);}\n" +
+            "function step2(){window.print();window.close()}\n" +
+            "</scri" + "pt></head><body onload='step1()'>\n" +
+            "<img src='" + source + "' /></body></html>";
+}
+function PrintImage(source) {
+    Pagelink = "about:blank";
+    var pwa = window.open(Pagelink, "_new");
+    pwa.document.open();
+    pwa.document.write(ImagetoPrint(source));
+    pwa.document.close();
+}
+
+});
+
+</script>
+</head> 
+
+<body>
+	<!--top-->
+	<div class="login-main"  >
+	
+		<div  style="  margin-top: 30px; ">
+			
+			<img src="img/logo.png" width="180px" height="100px" style="margin: auto;"/>
+			
+			
+		</div>	
+		
+		<div style="width: 1000px; height: 800px; margin: auto;  box-shadow: 0px 0px 30px  black; margin-top: 20px;overflow:auto;">
+			<div style="margin:10px;">
+				<h2 style=" text-align: center; float: left;text-decoration: underline; font-size:30px;">REPORT</h2><img src="img/close.png" class="close"  width="35px" height="35px" style="cursor: pointer; margin-top: 20px;margin-right: 20px;float:right; "/>
+				
+			</div>
+	
+		<div class="radio-sel1">
+				
+		</div>	
+			
+			
+		<div id="reports"> 
+
+		</div>
+		</div>
+		
+		
+	
+	</div>
+	
+	
+</body>
+	
+<html>

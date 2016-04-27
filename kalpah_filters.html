@@ -1,0 +1,446 @@
+<!doctype html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Kalpah-Filters</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="print"/>
+<script src="scripts/jquery-2.2.0.min.js"></script>
+<script src="scripts/jspdf.min.js"></script>
+<script src="scripts/picker.js"></script>
+<link rel="stylesheet" type="text/css" href="css/filters_reset.css" />
+<link rel="stylesheet" type="text/css" href="css/filters_styles.css" />
+<link rel="stylesheet" type="text/css" href="css/filters_side_menu_styles.css">
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
+<link rel="stylesheet" type="text/css" href="css/examples.css">
+<link rel="stylesheet" type="text/css" href="css/image-picker.css">
+<!-- <script type="text/javascript" src="scripts/jquery.min.js" ></script> -->
+<script type="text/javascript" src="scripts/jquery-latest.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="scripts/image-picker.js"></script>
+<script type="text/javascript" src="scripts/filters_side_menu_script.js"></script>
+<script type="text/javascript" src="scripts/filters_script.js"></script>
+<script type="text/javascript" src="js/html2canvas.js"></script>
+<script type="text/javascript">     
+   
+$(function() { 
+	if($("#sourceimage").attr("src")==''){
+		
+	$(".org_image").text('').css({"height":'165px',"box-shadow":"0px 0px 10px 1px black","text-align":"center","top":"50%"});	
+
+	}
+	
+
+
+    $(".print").click(function () {
+        var contents = $("#specialBox").html();
+        var frame1 = $('<iframe />');
+        frame1[0].name = "frame1";
+        frame1.css({ "position": "absolute", "top": "-1000000px" });
+        $("body").append(frame1);
+        var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+        frameDoc.document.open();
+        //Create a new HTML document.
+        frameDoc.document.write('<html><head><title>DIV Contents</title>');
+        frameDoc.document.write('</head><body>');
+        //Append the external CSS file.
+        frameDoc.document.write('<link href="css/style.css" rel="stylesheet" type="text/css" />');
+        //Append the DIV contents.
+        frameDoc.document.write(contents);
+        frameDoc.document.write('</body></html>');
+        frameDoc.document.close();
+        setTimeout(function () {
+            window.frames["frame1"].focus();
+            window.frames["frame1"].print();
+            frame1.remove();
+        }, 500);
+    });
+
+   });       
+
+ 
+function callFilter(value){                                    
+	if(value == "gs"){                                                        
+		myGray();                                                    
+		}                              
+	if(value == "so"){                                
+		mySobel();                    
+		}                              
+	if(value == "pr"){                                
+		myPrewitt();                    
+		}                              
+	if(value == "ro"){                                
+		myRoberts();                    
+		}                              
+	if(value == "log"){                                
+		myLoG();                    
+		}                              
+	if(value == "ahe"){                                
+		myAdapHistEq();                    
+		}                              
+	if(value == "ovr"){                                
+		myomniVuered();                    
+		}                              
+	if(value == "ovb"){                                
+		myomniVueblue();                    
+		}          
+	}
+	
+	function loadImage(){
+		
+	}
+	    function PrintDiv() {
+            var divToPrint = document.getElementsById('specialBox')[0];
+            var popupWin = window.open('', '_blank', 'width=300,height=400,location=no,left=200px');
+            popupWin.document.open();
+           popupWin.document.write('<html><head><link href="css/style.css" rel="stylesheet" type="text/css"></head><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>')
+            popupWin.document.close();
+        }
+	$(window).load(function(){
+	$(document).ready(function(){
+	
+
+    $('#save').click(function() {       
+        html2canvas($("#specialBox"), {
+            onrendered: function(canvas) {         
+                var imgData = canvas.toDataURL(''); 
+                $("#imgRes").attr("src", imgData);             
+                var doc = new jsPDF('p', 'mm');
+                doc.addImage(imgData, 'PNG', 10, 10);
+                doc.save('sample-file.pdf');
+            }
+        });
+    });
+	$(".name").hover(function(){
+		$("#patient_info ul").css("display","block");
+	});
+	
+	$("#patient_info").on("mouseleave",function(){
+		$("#patient_info ul").css("display","none");
+	});
+	
+	$("#overlay").click(function(){
+		$("#specialBox").css("display","none");
+		$("#overlay").css("display","none");
+	});
+	});
+	});
+ 
+
+	function specialBox(){
+	
+	var overlay = document.getElementById('overlay');
+	var specialBox = document.getElementById('specialBox');
+	overlay.style.opacity = .4;
+	if(overlay.style.display == "block"){
+		overlay.style.display = "none";
+		specialBox.style.display = "none";
+	} else {
+		overlay.style.display = "block";
+		specialBox.style.display = "block";
+	
+	}
+	var comm=$("#comment").val();
+	$(".comment").text(comm);
+	}
+	
+	
+
+</script>
+<style>
+	ul .thumbnails{
+		position:absolute;
+		z-index:1000;
+		margin-top:10px;
+		margin-left:260px;
+		
+		cursor:pointer;
+		opacity:.5;
+	}
+		ul .thumbnails:hover{
+		
+		opacity:.7;
+	}
+	.image_picker_image{
+		cursor:pointer;
+	}
+	
+#patient_info{
+	
+	padding: 10px;
+	position:absolute;
+	z-index:10;
+	margin-top:10px;
+	opacity: .8;
+	margin-left: 800px;
+}
+#patient_info .name{
+	background-color: #323232;
+	padding:10px;
+	width: 100px;
+	display:block;
+	
+	text-align:center;
+	border-radius: 20px;
+	cursor:pointer;
+}
+
+#patient_info ul{
+font-size:25px;
+	text-align:center;
+	display:none;
+	margin:0;
+	margin-left:-60px;
+	background-color: rgba(0,0,0,.8);
+	border-radius:5px; 
+}
+#patient_info ul li button{
+	padding:5px;
+	background-color: rgba(0,3,0,.2);
+	color: white;
+	border-radius: 2px;
+	cursor: pointer;
+	border:1px solid white ;
+	box-shadow: 0px 0px 5px 1px white;
+	width:100px;
+}
+#specialBox{
+display: none;
+	position: absolute;
+	z-index: 1000;
+		height: 842px;
+		width: 595px;
+      margin-left: 20%;
+        margin-right: auto;
+background-color: white;
+	color: #000;
+
+}
+#specialBox #special_container{
+margin:.5in;
+}
+#overlay{
+	display: none;
+	z-index: 2;
+	background: #000;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+}
+
+#specialBox table{
+}
+legend{
+	margin-top:10px;
+	height:50px;
+	width:200px;
+}
+hr{
+margin-top:30px;}
+#report_image{
+margin-top:10px;}
+#p_footer{
+	margin-top:80px;
+}
+.sign{
+	float:left;
+}
+.buttons{
+	float:right;
+}
+h5{
+width:auto;}
+</style>
+</head>
+<body onload="loadImage()">
+
+	<div id="maincontainer" class="width">
+		<header>
+			<div class="width" style="float:left;width:20%;">
+					<img src="images/kalpah_logo1.png" width="100px" />
+					
+			</div>
+			<div class="title" style="width:75%;float:left;text-align:center;">
+			<h2>ADVANCED FILTERS</h2>
+			</div>
+			
+		</header>
+		
+		<div id="body" class="width">
+			<section id="content" class="two-column with-right-sidebar">
+				<article >
+					<div class="org_image"></div>
+					<span style="position:absolute;z-index: 100;    top: 181px;   left: 46px;">No Image Selected</span>
+					<img id="sourceimage" src="" 
+						style="visibility: visible;" style=""/>
+
+				</article>
+				<!-- <input type="file" id="imgLoader" onclick="myOriginal()" name="pic" accept="image/*"><br> -->
+				<div id='cssmenu'>
+					<ul id="menu">
+						
+						<li class='active has-sub'><a href='#'>Filters</a>
+							<ul>
+								<li><a onclick="callFilter('gs')">GrayScale</a></li>
+								<li><a onclick="callFilter('so')">Sobel</a></li>
+								<li><a onclick="callFilter('pr')">Prewitt</a></li>
+								<li><a onclick="callFilter('ro')">Robert</a></li>
+								<li><a onclick="callFilter('log')">LoG</a></li>
+								<li><a onclick="callFilter('ahe')">Adaptive Histogram Equalisation</a></li>
+								<li><a onclick="callFilter('ovr')">OmniVue Red</a></li>
+								<li><a onclick="callFilter('ovb')">OmniVue Blue</a></li>
+							</ul></li>
+					
+						<li><a href='#'>Others</a></li>
+					</ul>
+				</div>
+			</section>
+
+
+<div  id="specialBox" >
+			<div id="special_container">
+				<div id="p_logo"><img src="images/kalpah_logo2.png" width="100px" height="50px"/></div>
+				<div id="p_header">
+					<h5 style="float:left;"> Kalpah Report</h5>
+					<div style="float:right;"><img src="images/kalpah_logo1.png" style=""width="70px" height="60px"/></div>
+					
+					
+				</div>
+				<br>
+				<br><br>
+				<div style="float:right;">
+				
+				<h5 >Company Name  </h5>
+				</div>
+				<br>
+				<hr >
+				<div id="patient_details">
+				<table>
+					<tr><td>Patient ID</td><td>Name</td><td>Age</td><td>Gender</td><td>Examination</td></tr>
+					<tr><td></td><td></td><td></td><td></td><td></td></tr>
+				</table>
+				</div>
+				<div id="report_image">
+					<img src="images/3.jpg" class="print_image"width="80%" height="80%" style="margin-left:10%;"/>
+				</div>
+				<div>
+				
+					Comments: 
+					<div class="comment">
+					</div>
+					
+				</div>
+				
+				<div id="p_footer">
+					<div class="sign">
+						Signature<br>
+						Date:
+					</div>
+				
+					<div class="buttons">
+						<button class="send">Send</button>
+						<button class="save" id="save">Save</button>
+						<button class="print">Print</button>
+					</div>
+						<div id="editor"></div>
+				</div>
+			</div>
+		</div>
+	
+			<aside class="sidebar big-sidebar right-sidebar">
+				<ul>
+	
+					<li >
+					</li>
+						<select id="patImagesList" class="image-picker"  style="visibility:hidden; width:1px; height: 1px;">
+								<!-- Options Start -->
+								<option data-img-src='images/3.jpg' value='images/3.jpg'>3.JPG</option>
+								<option data-img-src='images/4.jpg' value='images/4.jpg'>4.JPG</option>
+								<option data-img-src='images/5.jpg' value='images/5.jpg'>3.JPG</option>
+								<option data-img-src='images/6.jpg' value='images/6.jpg'>4.JPG</option>
+								
+							</select>
+					<li>
+					 <div id="patient_info">
+						<form action="#">
+							 
+							<label class="name">Report</label>
+							
+							<ul >
+								COMMENT
+								<li><textarea id="comment" rows="5" cols="25"></textarea> </li>
+								<li><button onclick="specialBox()">OK</button></li>
+							</ul>
+						</form>
+					</div>
+							
+					<canvas id="myCanvas" width="1000px" height="600px" /></li>
+				</ul>
+			</aside>
+			<div class="clear"></div>
+		</div>
+	</div>
+			<div id="overlay"></div>
+	<footer>
+		<div class="footer-bottom">
+			<p>
+				&copy; Kalpah 2014. <a href="http://Kalpah.com/">Filters</a> by
+				Kalpah
+			</p>
+		</div>
+	</footer>
+	<script>
+		document.getElementById("patImagesList").onchange = function (evt){    
+			var tgt = evt.target || window.event.srcElement; 
+			var img=new Image(); 
+			img.onload=function(){ 
+				var imgWidth=img.width; 
+				var imgHeight=img.height; 
+				var imgAspectRatio=imgWidth/imgHeight; 
+				var c=document.getElementById("myCanvas"); c.height=c.width/imgAspectRatio; 
+				var ctx = c.getContext("2d"); ctx.drawImage(img,0,0,c.width,c.height); 
+			};         
+			img.src=document.getElementById("patImagesList").value; 
+			document.getElementById("sourceimage").src=img.src; 
+
+			var c = document.getElementById("myCanvas"); 
+			var ctx = c.getContext("2d"); 
+			var img = document.getElementById("sourceimage");
+			var img1=$("#sourceimage").attr("src");
+			$(".org_image").hide();
+			$("span").hide();
+				$(".print_image").attr("src",img);
+			ctx.drawImage(img,0,0,c.width,c.height ); 
+			
+		}                                       
+		/* function myOriginal(){                                    
+				var c = document.getElementById("myCanvas");                                    
+				var ctx = c.getContext("2d");                                    
+				var img = document.getElementById("sourceimage");                                    
+				ctx.drawImage(img,0,0,c.width,c.height);                            
+			} */
+	</script>
+	<script type="text/javascript">        
+		jQuery("select.image-picker").imagepicker({              
+			hide_select:  false,        
+		});        
+		jQuery("select.image-picker.show-labels").imagepicker({              
+			hide_select:  false, show_label: true,        
+		});       
+		jQuery("select.image-picker.limit_callback").imagepicker({              
+			limit_reached:  function(){alert('We are full!')}, hide_select:false        
+		});        
+		var container = jQuery("select.image-picker.masonry").next("ul.thumbnails");        
+		container.imagesLoaded(function(){              
+			container.masonry({                    
+				itemSelector:   "image-picker-image",              
+			});        
+		});
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,153 @@
+<html>
+<head>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Filters</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<script src="js/jquery-2.2.0.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/jcarousel.connected-carousels.css">
+
+	<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+
+	<script type="text/javascript" src="js/jcarousel.connected-carousels.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+	<style type="text/css">
+
+		
+		li{
+			cursor:pointer;
+			padding: 20px;
+			margin-left: -50px;
+			width: 170px;
+			font-size: 20px;
+			height: 50px;
+			box-shadow: 0px 0px 20px grey;
+			
+		}
+		li:hover{
+			background-image: url(img/mark.png);
+			background-position: 90% 50%;
+			background-repeat: no-repeat;
+			box-shadow: 0px 0px 5px black;
+			background-size: 30px 30px;
+		}
+		.selected{
+			background-image: url(img/mark.png);
+			background-position: 90% 50%;
+			background-repeat: no-repeat;
+			box-shadow: 0px 0px 5px black;
+			background-size: 30px 30px;
+		}
+		ul{
+			
+		}
+		a{
+			
+			text-decoration: none;
+			color: white;
+		}
+	</style>
+	
+	<script src="js/jquery.cycle2.min.js"></script>
+	<script>
+
+		$(document).ready(function(){
+
+			$('.cycle-slideshow').cycle('pause');
+
+			$("li").click(function(){
+
+				$("li").removeClass("selected");
+				$(this).addClass( "selected" );
+
+			});
+		});
+
+
+	</script>
+
+	<style type="text/css">
+
+
+	</style>
+</head> 
+
+<body >
+	<div>
+	<div style=" width:100%; height: 120px;" >
+
+		<div style="width: 100%; height: 15%;  "> 
+			<div style="width: 15%;  float: left;margin-top: 25px;">
+				<img src="img/logos/kalpah_logo1.png" class="logo_img" style=""/>
+			</div>
+			<div style="width:80%;float:left;text-align: center;">
+				<h2 style="">ADVANCED FILTERS</h2>
+			</div>
+
+		</div>
+	</div><hr style="width:100%;">
+	<div style="">
+		<div style="float:left; width: 100px; margin:0px;">
+
+			<ul  style="list-style-type: none; display: block; margin:0px;">
+				<b>
+					<li class=""><a href="#" style=""> FILTER I</a></li>
+					<li><a href="#">FILTER II</a></li>
+					<li><a href="#">FILTER III</a></li>
+					<li><a href="#">FILTER IV</a></li>
+				</b>
+			</ul>
+		</div>
+
+	<div class="connected-carousels">
+
+
+
+			<div class="stage">
+
+				<div class="navigation" style="">
+
+					<a href="#" class="prev prev-navigation">&lsaquo;</a>
+					<a href="#" class="next next-navigation">&rsaquo;</a>
+					<div class="carousel carousel-navigation">
+						<ul>
+							<li><img src="img/1.jpg" width="50" height="50" class="thumb" alt=""></li>
+							<li><img src="img/2.jpg" width="50" height="50" class="thumb" alt=""></li>
+							<li><img src="3.jpg" width="50" height="50" class="thumb" alt=""></li>
+							<li><img src="4.jpg" width="50" height="50" class="thumb"  alt=""></li>
+							<li><img src="5.jpg" width="50" height="50" class="thumb"  alt=""></li>
+							<li><img src="6.jpg" width="50" height="50" class="thumb" alt=""></li>
+						</ul>
+					</div>
+				</div>
+				<div id="patient_info">
+					<label class="name">Name</label>
+				</div>
+				<div class="carousel carousel-stage">
+					<ul>
+						<li><img src="1.jpg"   alt=""></li>
+						<li><img src="2.jpg"  alt=""></li>
+						<li><img src="3.jpg"  alt=""></li>
+						<li><img src="4.jpg"  alt=""></li>
+						<li><img src="5.jpg"  alt=""></li>
+						<li><img src="6.jpg"  alt=""></li>
+					</ul>
+				</div>
+
+				<a href="#" class="prev prev-stage"><span>&lsaquo;</span></a>
+				<a href="#" class="next next-stage"><span>&rsaquo;</span></a>
+
+			</div>
+
+
+		</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+
+<html>

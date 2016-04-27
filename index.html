@@ -1,0 +1,617 @@
+<html>
+<head>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+
+<script src="js/jquery-2.2.0.min.js"></script>
+
+	<link rel="stylesheet" href="css/kalpah-ui.css">
+
+  <script src="js/kalpah-ui.js"></script>
+  <script src="js/kalpah.js"></script>
+
+
+	  <link rel="stylesheet" type="text/css" href="css/jcarousel.connected-carousels.css">
+
+        <script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+
+        <script type="text/javascript" src="js/jcarousel.connected-carousels.js"></script>
+        
+		<link rel="stylesheet" href="css/calendarview.css">
+     <link rel="stylesheet" href="malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.css" />
+    
+<script src="malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script>
+
+   		</script>
+
+
+<style>
+
+*{
+	margin:0;
+	padding:0;
+
+}
+
+.list_selected{
+	background-color: rgba(30, 28, 28, 0.78);
+	transform: translate3d(0,5px,5px);
+	border-radius:5px;
+	font-weight:bold;
+
+
+}
+body{
+	width:1340px;
+	margin-left:auto;
+	margin-right:auto;
+
+}
+#img_selected{
+visibility: hidden;
+}
+
+div#overlay {
+
+	display: none;
+	z-index: 2;
+	background: #000;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+}
+
+			.selected{
+				border: 2px solid red;
+			}
+
+div#specialBox {
+	display: none;
+	position: absolute;
+	z-index: 1000;
+	margin: 0px 0px 0px 300px;
+	width: 500px; 
+	height: 300px;
+	background: #FFF;
+	color: #000;
+	background-color: #333232;
+    }
+
+div#wrapper {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	padding-left:24px;
+}
+
+	::-webkit-input-placeholder {
+    color:    grey;
+}
+
+a{
+	text-decoration:none;
+	color: black;
+}
+
+.text{
+width: 300px;
+height: 40px;
+border-radius: 3px;
+ margin-left: 20px; 
+ padding: 20px;
+ background-color: rgba(70,70,70,0.82); 
+ color: grey; 
+ font-size: 13px;
+ border: 1px solid #333232;
+ margin-top: 30px;
+box-shadow: 0px 0px 50px #333232;
+}
+   div.calendar {
+       border-radius: 10px;
+      }
+      div.calendar table {
+        width: 100%;
+      }
+      div.dateField {
+        width: 240px;
+        padding: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        color: white;
+		font-size: 30px;
+        float: right;
+		
+		
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      div#popupDateField:hover {
+        background-color: #333232;
+        cursor: pointer;
+      }
+	  .app_name{
+        vertical-align: middle;
+        position:relative;
+		width: 100%;
+		height: 80px;
+		text-align: center;
+		box-shadow: 0px 0px 10px grey;
+		margin: 0px auto ;
+}
+.app_selected{
+	background-color: rgb(237, 122, 122);
+}
+#appointment {
+	display: none;
+	position: absolute;
+	z-index: 1000;
+	top:300px;
+	
+	margin-left:930px;
+	margin-top:20px;
+	height: 300px;
+	background: #FFF;
+	
+	box-shadow: 0px 0px 10px 1px black;
+	background-color: #333232;
+	transition: width 3s ease-in;
+	-webkit-transition: width 3s ease-in;
+    }    
+    #app_top{
+		width: 100%;
+		height: 60px;
+		top: 10px;
+		background-color:  black;
+		border-top-left-radius: 10px ;
+		border-top-right-radius: 10px;
+	  }
+    .book{
+    	width:auto;
+    	border: 1px solid grey ;
+    	padding: 5px;
+    	border-radius: 20px;
+    
+    	background-color: rgb(26, 188, 156);
+    	margin-left:auto;
+    	font-weight:bolder;
+    	cursor: pointer;
+    	font-size: 11px;
+    	margin:0px auto;
+    }
+	div#new_patient {
+	display: none;
+	position: absolute;
+	z-index: 100004;
+	margin: 0px 0px 0px 300px;
+	width: 500px; 
+	height: 300px;
+	background: #FFF;
+	color: #000;
+	background-color: #333232;
+    }
+.t_btn{
+
+	list-style-type: none;
+	margin-right:20px;
+	float: left;
+	border: 1px solid grey ;
+    padding: 5px;
+    border-radius: 20px;
+    color: white;
+    width: 50px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 10px;
+}
+#app_main{
+	display:none;
+	z-index: 100;
+	position:absolute;
+	opacity:1;
+	background:#333232;
+	margin-top:20px;
+	color:white;
+}
+</style>
+<script>
+function toggleOverlay(){
+	var overlay = document.getElementById('overlay');
+	var specialBox = document.getElementById('specialBox');
+	overlay.style.opacity = .4;
+	if(overlay.style.display == "block"){
+		overlay.style.display = "none";
+		specialBox.style.display = "none";
+	} else {
+		overlay.style.display = "block";
+		specialBox.style.display = "block";
+	
+	}
+}
+
+function app_toggleOverlay(){
+ 
+  var specialBox = document.getElementById('appointment');
+ 
+  specialBox.style.opacity=.9;
+  
+   
+   specialBox.style.display="block";
+
+ document.getElementById("curr_date").style.display="none";
+}
+
+function add_patient(){
+	var overlay = document.getElementById('overlay');
+	var specialBox = document.getElementById('new_patient');
+	overlay.style.opacity = .9;
+	
+		overlay.style.display = "block";
+		specialBox.style.display = "block";
+		document.getElementById("appointment").style.display="none";
+	
+	
+}
+
+function bookAppointment(){
+	var overlay = document.getElementById('overlay');
+	var specialBox = document.getElementById('app_main');
+	overlay.style.opacity = .9;
+	if(overlay.style.display == "block"){
+		overlay.style.display = "none";
+		specialBox.style.display = "none";
+	} else {
+		overlay.style.display = "block";
+		specialBox.style.display = "block";
+		document.getElementById("appointment").style.display="none";
+	
+	}
+}
+
+</script>
+  <script src="js/prototype.js"></script>
+    <script src="js/calendarview.js"></script>
+
+    <script>
+      function setupCalendars() {
+        // Embedded Calendar
+        Calendar.setup(
+          {
+            dateField: 'embeddedDateField',
+            parentElement: 'embeddedCalendar'
+          }
+        )
+
+        // Popup Calendar
+        Calendar.setup(
+          {
+            dateField: 'popupDateField',
+            triggerElement: 'popupDateField'
+          }
+        )
+      }
+
+      Event.observe(window, 'load', function() { setupCalendars() });
+	  
+
+    </script>
+
+
+</head> 
+
+<body>
+<div>
+<div  id="specialBox" style="width: 800px; height: 700px; ">
+			<div style="margin:10%;">
+				<h2 style="margin-left: 40%; float: left;color: white;">ADD PATIENT</h2><img src="img/close.png"  id="d_close"  width="25px" height="25px" style="cursor: pointer; margin-top: 20px;float:right;">
+			
+			</div>
+	
+			<form src="" method="post">
+					
+				<table style="margin:auto;align:left;"><tr>
+				<td><input type="text" class="text" placeholder="FULL NAME" /></td>
+				<td><input type="text" class="text" placeholder="PATIENT ID." /></td></tr>
+				<tr><td class="text"   style="background-color: rgba(70 ,70, 70, 0);">
+				
+				<input type="text" class="text datepicker" id="dob" name="bday" placeholder="DATE OF BIRTH"  style="margin-left:0px;">
+				</td>
+				<td><input type="text" class="text" placeholder="PHONE NUMBER" /></td></tr>
+				
+				<tr>
+				<td class="text"   style="background-color: rgba(70 ,70, 70, 0);">
+				<SPAN>SEX</SPAN><br>
+				<input type="radio" name="sex" value="male" style="margin-left:50px;background-color:rgba(70,70,70,0.82);">MALE
+				<input type="radio"  name="sex" value="female" >FEMALE</td>
+
+				<td><input type="text" class="text" placeholder="Address" style="background-color:rgba(70,70,70,0.82);"></td>
+				</tr>
+				
+				<tr><td colspan="2"  class="text" align="center" style="background-color: rgba(70 ,70, 70, 0);">
+				<SPAN>NEW APPOINTMENT</SPAN><br>
+				
+				
+				
+				<input type="text" class="text datepicker" id="dob1" name="appointmentDate" placeholder="Book Appointment"  style="margin-left:0px;">
+				
+				</td>
+				</tr>
+		
+				<tr><td colspan="2">
+				<input type="submit" value="ADD PATIENT" style="color:white;background-color: #1ABC9C; border-radius: 40px;width: 200px;  height:50px;padding: 10px;font-weight: bold; border: 1px solid #333232; cursor: pointer; vertical-align: middle; margin-top:30px; margin-left: 35%;"/>
+				</td></tr>
+				</table>
+			</form>
+		
+		</div>
+		
+		
+		<!--------new Patient-------------->		
+		
+		
+<div  id="new_patient" style="width: 800px; height: 700px; ">
+			<div style="margin:10%;">
+				<h2 style="margin-left: 40%; float: left;color: white;">ADD PATIENT</h2><img src="img/close.png" id="Pat_d_close" width="25px" height="25px" style="cursor: pointer; margin-top: 20px;float:right;">
+			
+			</div>
+		<hr style="top:200px; width:100%;border-color:grey;">
+			<form src="" method="post">
+					
+				<table style="margin:auto;align:left;"><tr>
+				<td><input type="text" class="text" placeholder="FULL NAME" /></td>
+				<td><input type="text" class="text" placeholder="PATIENT ID." /></td></tr>
+				<tr><td><input type="text" class="text" placeholder="AGE" style=" "/></td>
+				<td><input type="text" class="text" placeholder="PHONE NUMBER" /></td></tr>
+				
+				<tr><td class="text"   style="background-color: rgba(70 ,70, 70, 0);">
+				<SPAN>DATE OF BIRTH</SPAN><br>
+				<input type="text" class="text datepicker" id="dob" name="bday" placeholder="DATE OF BIRTH"  style="margin-left:0px;">
+				</td>
+				<td class="text"   style="background-color: rgba(70 ,70, 70, 0);">
+				<SPAN>SEX</SPAN><br>
+				<input type="radio" name="sex" value="male" style="margin-left:50px;background-color:rgba(70,70,70,0.82);">MALE
+				<input type="radio"  name="sex" value="female" >FEMALE</td>
+				</tr>
+				
+				<tr><td colspan="2"  class="text" align="center" style="background-color: rgba(70 ,70, 70, 0);">
+				SELECTED DATE AND TIME:
+				<label id="appointment_details" class="text" style="padding:9px;" ></label>
+				</td>
+				</tr>
+		
+				<tr><td colspan="2">
+				<input type="submit" value="ADD PATIENT & BOOK" style="color:white;background-color: #1ABC9C; border-radius: 40px;width: 200px;  height:50px;padding: 10px;font-weight: bold; border: 1px solid #333232; cursor: pointer; vertical-align: middle; margin-top:30px; margin-left: 35%;"/>
+				</td></tr>
+				</table>
+			</form>
+		
+		</div>
+		
+		<!---------------Appointment---------->
+		
+		
+		<div class="main" id="app_main" style="width: 1150px; height: 600px;  border-radius: 10px; box-shadow: 0px 0px 30px  black; overflow: visible; ">
+			<div style="margin:10px;">
+				<h2 style="margin-left: 42%; text-align: center; float: left;text-decoration: underline; font-size:30px;">APPOINTMENT</h2><img src="img/close.png" class="app_close"  width="35px" height="35px" style="cursor: pointer; margin-top: 20px;margin-right: 20px;float:right; ">
+				
+			</div>
+		<div style=" margin: 0px 30px 30px 30px; " >
+		
+<div id="reminder" style="float: left; width: 35%; height: 80%; margin-left: 100px;border-radius: 10px; box-shadow: 0px 0px 30px  black;background-color:rgba(74, 74, 74, 0.9);">
+	<div id="app_top" style="height:80px;">
+        
+ 	   <div id="curr_date" style="">
+ 			<script> 
+        	  	 var date=new Date();
+            	    var month=("0" + (date.getMonth() + 1)).slice(-2);
+                	var dt=("0"+(date.getDate())).slice(-2);
+                	document.write("&nbsp;&nbsp;&nbsp;"+date.getFullYear()+"-"+month+"-"+dt);
+        	</script>
+    	</div>
+		<div id="embeddedDateField" class="dateField" style="">
+            
+           
+     
+		</div>
+		
+	</div>
+	<div class="content" style="overflow: auto;height: 80%" data-mcs-theme="inset-3">
+		<p class="app_name">aslkdfj</p>
+		<p class="app_name">alsdkfj</p>
+		<p class="app_name" >aslkdfj</p>
+		<p class="app_name">alsdkfj</p>
+		<p class="app_name" >aslkdfj</p>
+		<p class="app_name">alsdkfj</p>
+		<p class="app_name" >aslkdfj</p>
+		<p class="app_name">alsdkfj</p>
+	</div>
+
+</div>
+	
+			<div style="float: left; width: 40%; margin-left: 150px; ">
+	
+				<div style="">
+					<div style="height: 400px;-webkit-border-radius: 12px; -moz-border-radius: 12px; width: 400px;  max-width: 400px; ">
+       
+						<div id="embeddedExample" style="width: 400px;">
+							<div id="embeddedCalendar" style="margin-left: auto; margin-right: auto">
+								
+							</div>
+								<br />
+							
+						<br />
+						</div>
+					</div>
+				</div>
+			</div>
+	<div id="appointment">
+		<div class="container" style="margin:50px 20px auto 20px;">
+		<form action="#">
+		
+		 	<li class="t_btn">12 AM</li>
+		 	<li class="t_btn">1 PM</li>
+		 	<li class="t_btn">2 PM</li>
+		 	<li class="t_btn">3 PM</li>
+		 	<li class="t_btn">4 PM</li>
+		 	<li class="t_btn">5 PM</li>
+		<hr style="width:100%;">
+		 	<input type="text" id="patient_id" placeholder="Patient Id" class="text" style="background-color:#333333;border:1px solid grey;margin-bottom: 0px;border-radius:2px;color:white;width:200px;padding:10px;"/><br>
+		 	<label id="add_patient" style="color:white; font-size:12px; text-decoration:underline;float:right; cursor:pointer;" onclick="add_patient()">Add Patient</label><br>
+		 	<input type="hidden" id="hdate"/>
+		 	<input type="submit" class="book" onclick="alert('appointment')" value="BOOK APPOINTMENT">
+
+		 	</form>
+		</div>
+	</div>
+	
+	</div>
+	</div>
+	<!--top-->
+	<header class="top" >
+		
+		<div class="container">
+		
+		<div class="logo">
+		<img src="img/logos/kalpah_logo1.png" class="logo_img" style=""/>
+		</div>
+		<div class="top-buttons">
+			<button class="btn-add btn" onmousedown="toggleOverlay()">ADD PATIENT</button>			
+				<button class="btn-appointment btn"  style="" onclick="bookAppointment()">BOOK APPOINTMENT</button>
+				<button class="btn-report btn report" >REPORT</button>			
+			
+			<a href="kalpah_filters.html"> <button  class="btn-examine btn" >EXAMINE</button></a>
+	<select id="img_selected"> </select>
+			
+			
+		</div>
+		
+		
+	</div>
+	
+	</header>
+	<div>
+	<!--side -->
+	<div class="body" style="float: left;">
+		<div class="side">
+		<div class="container">
+			<div class="search">
+				<input type="text" class="search-text" placeholder="search" >
+			</div>
+		
+		<div class="list">
+			<li><div class="p_name">Satyanarayanaasdfasdf</div><div class="p_id">555555</div></li>
+			<li><div class="p_name">Bhargavasd</div><div class="p_id">20</div></li>
+			<li><div class="p_name">Palivela</div><div class="p_id">30</div></li>
+			<!-- list of names-->
+		</div>
+		
+		<button class="btn-dump btn " style="text-align: center;" ><p style="margin-top: 20px;">MAKE/DUMP  .PAT FILE</p></button>		</div>
+	</div>
+	</div>
+	
+		<div class="main" style="float: left;min-width:300px;">
+			
+		<div class="container">
+		
+			<div class="main-top">
+				
+				<img src="img/close.png" class="close" align="right" width="25px" height="25px" style="cursor: pointer; margin-top:-30px;float:right;">
+				
+			
+			</div>
+				
+		<!--	<div class="img-slider" style="margin-top: 50px;">
+				
+			<div class="row">
+				
+			
+							<div class="cycle-slideshow" data-cycle-pager-template="<a class='thumb' href='#'><img src='{{src}}' width='100' height='50'></a>">
+								<div class="cycle-pager">
+									
+								</div>
+								
+								<span class="cycle-prev">&#9001;</span>
+								<span class="cycle-next">&#9002;</span>
+									<img src="img/1.jpg"/>
+									<img src="img/2.jpeg"/>
+									<img src="img/3.jpg" />
+									<img src="img/1.jpg" />
+								
+							
+							
+							
+			</div>	
+			
+
+		
+				
+			</div>
+			
+		
+				
+		</div>-->
+		    <div class="connected-carousels">
+		  
+
+			 
+                <div class="stage">
+
+                  <div class="navigation" style="">
+
+                    <a href="#" class="prev prev-navigation">&lsaquo;</a>
+                    <a href="#" class="next next-navigation">&rsaquo;</a>
+                    <div class="carousel carousel-navigation">
+                        <ul>
+                            <li><img src="1.jpg" width="50" height="50" class="thumb" alt=""></li>
+                            <li><img src="2.jpg" width="50" height="50" class="thumb" alt=""></li>
+                            <li><img src="3.jpg" width="50" height="50" class="thumb" alt=""></li>
+                            <li><img src="4.jpg" width="50" height="50" class="thumb"  alt=""></li>
+                            <li><img src="5.jpg" width="50" height="50" class="thumb"  alt=""></li>
+                            <li><img src="6.jpg" width="50" height="50" class="thumb" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+                  <div id="patient_info">
+			<label class="name">Name</label>
+		</div>
+                    <div class="carousel carousel-stage">
+                        <ul>
+                            <li><img src="1.jpg"   alt=""></li>
+                            <li><img src="2.jpg"  alt=""></li>
+                            <li><img src="3.jpg"  alt=""></li>
+                            <li><img src="4.jpg"  alt=""></li>
+                            <li><img src="5.jpg"  alt=""></li>
+                            <li><img src="6.jpg"  alt=""></li>
+                        </ul>
+                    </div>
+               
+                    <a href="#" class="prev prev-stage"><span>&lsaquo;</span></a>
+                    <a href="#" class="next next-stage"><span>&rsaquo;</span></a>
+					
+                </div>
+
+              
+            </div>
+		</div>
+				<div id="overlay"></div>
+
+	</div>
+	</div>			
+		<footer>
+		<div class="footer-bottom" >
+			<p>
+				&copy; Kalpah 2014. <a href="http://Kalpah.com/">Filters</a> by
+				Kalpah
+			</p>
+		</div>
+	</footer>
+</body>
+</html>
